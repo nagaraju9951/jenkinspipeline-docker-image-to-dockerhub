@@ -1,12 +1,12 @@
 pipeline {
     agent any
     tools {
-        maven 'maven_3_5_0'
+        maven 'maven'
     }
     stages {
         stage('Build Maven') {
             steps {
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nagaraju9951/build-docker-image-jenkins']])
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'naga', url: 'https://git.cloudavise.com/visops/t057/jenkinspipeline-docker-image-to-dockerhub']])
                 sh 'mvn clean install'
             }
         }
